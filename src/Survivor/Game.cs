@@ -8,6 +8,7 @@ namespace Survivor
     {
         public Game()
         {
+            arena = new Arena(80, 25);
             arena.Creatures.Add(new TestCreature(10, 2));
             arena.Creatures.Add(new TestCreature(4, 5));
         }
@@ -22,15 +23,16 @@ namespace Survivor
         {
             int fps = FramesPerSecond > 0 ? FramesPerSecond : 1;
             int delay = (int) (1000.0 / fps);
-
-            var healthSpawner = new HealthSpawner();
+            
+            var renderer = new Renderer();
+            renderer.UpdateConsoleSize(arena);
 
             while (true)
             {
                 UpdateCreatures();
                 SpawnItems();
 
-                Draw();
+                renderer.Draw(arena);
 
                 Thread.Sleep(delay);
             }
@@ -55,25 +57,7 @@ namespace Survivor
             }
         }
 
-        private void Draw()
-        {
-            Console.CursorVisible = false;
-            Console.Clear();
-
-            foreach (var healthPack in arena.HealthPacks)
-            {
-                Console.SetCursorPosition(healthPack.X, healthPack.Y);
-                Console.Write('H');
-            }
-
-            foreach (var creature in arena.Creatures)
-            {
-                Console.SetCursorPosition(creature.X, creature.Y);
-                Console.Write('@');
-            }
-        }
-
-        private Arena arena = new Arena(80, 25);
+        private Arena arena;
         private HealthSpawner healthSpawner = new HealthSpawner();
     }
 }
