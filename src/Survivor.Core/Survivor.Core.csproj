@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arena\Arena.cs" />
+    <Compile Include="Arena\Position.cs" />
     <Compile Include="Commands\AttackCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\IdleCommand.cs" />

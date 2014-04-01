@@ -8,7 +8,7 @@ namespace Survivor
         static void Main(string[] args)
         {
             var game = new Game();
-            game.FramesPerSecond = 4;
+            game.FramesPerSecond = 20;
 
             game.Add<TestCreature>("Maximus");
             game.Add<TestCreature>("Antonius");

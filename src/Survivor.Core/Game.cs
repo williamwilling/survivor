@@ -12,19 +12,19 @@ namespace Survivor.Core
             arena = new Arena(80, 25);
 
             healthSpawner = new Spawner(ItemType.HealthPack);
-            healthSpawner.MaxItemCount = 10;
-            healthSpawner.MinStrength = 5;
-            healthSpawner.MaxStrength = 5;
+            healthSpawner.MaxItemCount = 4;
+            healthSpawner.MinStrength = 1;
+            healthSpawner.MaxStrength = 1;
 
             weaponSpawner = new Spawner(ItemType.Weapon);
-            weaponSpawner.MaxItemCount = 4;
+            weaponSpawner.MaxItemCount = 2;
             weaponSpawner.MinStrength = 2;
-            weaponSpawner.MaxStrength = 7;
+            weaponSpawner.MaxStrength = 4;
 
             armorSpawner = new Spawner(ItemType.Armor);
-            armorSpawner.MaxItemCount = 4;
+            armorSpawner.MaxItemCount = 2;
             armorSpawner.MinStrength = 1;
-            armorSpawner.MaxStrength = 4;
+            armorSpawner.MaxStrength = 2;
         }
 
         public int FramesPerSecond
@@ -35,10 +35,12 @@ namespace Survivor.Core
 
         public void Add<T>(string name) where T : Creature, new()
         {
+            var position = arena.FindEmptySpot();
+
             var creature = new T();
             creature.Name = name;
-            creature.X = 0;
-            creature.Y = 0;
+            creature.X = position.X;
+            creature.Y = position.Y;
             creature.Health = 1;
 
             arena.InternalCreatures.Add(creature);

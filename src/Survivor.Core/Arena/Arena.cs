@@ -73,6 +73,24 @@ namespace Survivor.Core
             }
         }
 
+        public bool IsInBounds(int x, int y)
+        {
+            return x >= 0 && x < Width && y >= 0 && y < Height;
+        }
+
+        internal Position FindEmptySpot()
+        {
+            var position = new Position();
+
+            do
+            {
+                position.X = random.Next(Width);
+                position.Y = random.Next(Height);
+            } while (IsCloseToCreature(position.X, position.Y) || IsCloseToItem(position.X, position.Y));
+
+            return position;
+        }
+
         internal List<Creature> InternalCreatures
         {
             get;
@@ -149,9 +167,22 @@ namespace Survivor.Core
             return false;
         }
 
+        public bool IsCloseToItem(int x, int y)
+        {
+            foreach (var item in InternalItems)
+            {
+                if (IsCloseTo(item, x, y))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public bool IsCloseToCreature(int x, int y)
         {
-            foreach (var creature in Creatures)
+            foreach (var creature in InternalCreatures)
             {
                 if (IsCloseTo(creature, x, y))
                 {
@@ -170,10 +201,20 @@ namespace Survivor.Core
             return xDistance + yDistance < 10;
         }
 
+        private bool IsCloseTo(Item item, int x, int y)
+        {
+            int xDistance = Math.Abs(item.X - x);
+            int yDistance = Math.Abs(item.Y - y);
+
+            return xDistance + yDistance < 10;
+        }
+
         public List<string> Log
         {
             get;
             private set;
         }
+
+        private static Random random = new Random();
     }
 }
