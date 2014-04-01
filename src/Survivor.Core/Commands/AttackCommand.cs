@@ -28,10 +28,14 @@ namespace Survivor.Core
                     int damage = Math.Max(0, Creature.Attack - enemy.Defense);
 
                     message = String.Format(
-                        "{0} attacks {1} and does {2} damage.",
+                        "{0} attacks {1} and does {2} damage. {1} has {3} HP left.",
                         Creature.Name,
                         enemy.Name,
-                        damage);
+                        damage,
+                        enemy.Health);
+
+                    enemy.Health -= damage;
+                    enemy.Defense = 0;
                 }
                 else
                 {
