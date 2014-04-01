@@ -85,7 +85,20 @@ namespace Survivor.Core
                     var nearWeapons = itemFinder.FindNear(creature, ItemType.Weapon);
                     var nearArmors = itemFinder.FindNear(creature, ItemType.Armor);
 
-                    creature.Update(nearCreatures, nearHealthPacks, nearWeapons, nearArmors);
+                    try
+                    {
+                        creature.Update(nearCreatures, nearHealthPacks, nearWeapons, nearArmors);
+                    }
+                    catch (Exception e)
+                    {
+                        var message = String.Format(
+                            "{0} makes a fatal mistake. {1}",
+                            creature.Name,
+                            e.GetType());
+
+                        arena.Log.Add(message);
+                        creature.Health = -1;
+                    }
                 }
 
                 var command = creature.NextCommand();
