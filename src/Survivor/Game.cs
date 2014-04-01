@@ -9,8 +9,8 @@ namespace Survivor
         public Game()
         {
             creatures = new List<Creature>();
-            creatures.Add(new Creature(10, 2));
-            creatures.Add(new Creature(4, 5));
+            creatures.Add(new TestCreature(10, 2));
+            creatures.Add(new TestCreature(4, 5));
         }
 
         public int FramesPerSecond
@@ -26,6 +26,11 @@ namespace Survivor
 
             while (true)
             {
+                foreach (var creature in creatures)
+                {
+                    creature.Update();
+                }
+
                 Draw();
 
                 Thread.Sleep(delay);
@@ -34,6 +39,9 @@ namespace Survivor
 
         private void Draw()
         {
+            Console.CursorVisible = false;
+            Console.Clear();
+
             foreach (var creature in creatures)
             {
                 Console.SetCursorPosition(creature.X, creature.Y);

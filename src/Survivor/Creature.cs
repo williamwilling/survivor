@@ -21,5 +21,9 @@ namespace Survivor
             get;
             set;
         }
+
+        public virtual void Update()
+        {
+        }
     }
 }
