@@ -10,6 +10,9 @@ namespace Survivor
     {
         static void Main(string[] args)
         {
+            var game = new Game();
+            game.FramesPerSecond = 10;
+            game.Run();
         }
     }
 }
