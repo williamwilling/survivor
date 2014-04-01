@@ -8,7 +8,6 @@ namespace Survivor
     {
         public Game()
         {
-            creatures = new List<Creature>();
             creatures.Add(new TestCreature(10, 2));
             creatures.Add(new TestCreature(4, 5));
         }
@@ -24,6 +23,8 @@ namespace Survivor
             int fps = FramesPerSecond > 0 ? FramesPerSecond : 1;
             int delay = (int) (1000.0 / fps);
 
+            var healthSpawner = new HealthSpawner();
+
             while (true)
             {
                 foreach (var creature in creatures)
@@ -37,6 +38,8 @@ namespace Survivor
                     command.Do();
                 }
 
+                healthSpawner.Spawn(creatures, healthPacks);
+
                 Draw();
 
                 Thread.Sleep(delay);
@@ -48,6 +51,12 @@ namespace Survivor
             Console.CursorVisible = false;
             Console.Clear();
 
+            foreach (var healthPack in healthPacks)
+            {
+                Console.SetCursorPosition(healthPack.X, healthPack.Y);
+                Console.Write('H');
+            }
+
             foreach (var creature in creatures)
             {
                 Console.SetCursorPosition(creature.X, creature.Y);
@@ -55,6 +64,7 @@ namespace Survivor
             }
         }
 
-        private List<Creature> creatures;
+        private List<Creature> creatures = new List<Creature>();
+        private List<HealthPack> healthPacks = new List<HealthPack>();
     }
 }
