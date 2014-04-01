@@ -7,14 +7,14 @@ namespace Survivor
 {
     public abstract class Command
     {
-        public Command(Creature creature)
+        public Command(CreatureState creature)
         {
             Creature = creature;
         }
 
         public abstract void Do();
 
-        protected Creature Creature
+        protected CreatureState Creature
         {
             get;
             private set;

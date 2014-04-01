@@ -4,7 +4,7 @@ namespace Survivor
 {
     public class MoveCommand : Command
     {
-        public MoveCommand(Creature creature, Direction direction)
+        public MoveCommand(CreatureState creature, Direction direction)
             : base(creature)
         {
             this.direction = direction;

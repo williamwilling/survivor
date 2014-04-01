@@ -4,7 +4,7 @@ namespace Survivor
 {
     public class IdleCommand : Command
     {
-        public IdleCommand(Creature creature) :
+        public IdleCommand(CreatureState creature) :
             base(creature)
         {
         }

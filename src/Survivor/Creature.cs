@@ -7,20 +7,24 @@ namespace Survivor
     {
         public Creature(int x, int y)
         {
-            X = x;
-            Y = y;
+            state.X = x;
+            state.Y = y;
         }
 
         public int X
         {
-            get;
-            set;
+            get
+            {
+                return state.X;
+            }
         }
 
         public int Y
         {
-            get;
-            set;
+            get
+            {
+                return state.Y;
+            }
         }
 
         public virtual void Update()
@@ -29,7 +33,7 @@ namespace Survivor
 
         protected void Move(Direction direction)
         {
-            var command = new MoveCommand(this, direction);
+            var command = new MoveCommand(state, direction);
             commands.Add(command);
         }
 
@@ -45,7 +49,7 @@ namespace Survivor
         {
             if (!HasCommands)
             {
-                return new IdleCommand(this);
+                return new IdleCommand(state);
             }
 
             var command = commands[0];
@@ -54,5 +58,6 @@ namespace Survivor
         }
 
         private List<Command> commands = new List<Command>();
+        private CreatureState state = new CreatureState();
     }
 }
