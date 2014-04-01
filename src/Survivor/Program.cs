@@ -12,6 +12,10 @@ namespace Survivor
         {
             var game = new Game();
             game.FramesPerSecond = 4;
+
+            game.Add<TestCreature>("Maximus");
+            game.Add<TestCreature>("Antonius");
+
             game.Run();
         }
     }

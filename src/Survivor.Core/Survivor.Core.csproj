@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DBA5E822-9567-4CA3-9CBA-D29C88238123}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{0916D3E2-B980-42A4-91EF-B72AF8ADE676}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Survivor</RootNamespace>
-    <AssemblyName>Survivor</AssemblyName>
+    <RootNamespace>Survivor.Core</RootNamespace>
+    <AssemblyName>Survivor.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,36 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arena.cs" />
-    <Compile Include="Armor.cs" />
-    <Compile Include="AttackCommand.cs" />
-    <Compile Include="Command.cs" />
     <Compile Include="Creature.cs" />
-    <Compile Include="CreatureFinder.cs" />
-    <Compile Include="CreatureInfo.cs" />
-    <Compile Include="CreatureState.cs" />
-    <Compile Include="Direction.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="HealthPack.cs" />
-    <Compile Include="IdleCommand.cs" />
     <Compile Include="Item.cs" />
-    <Compile Include="ItemFinder.cs" />
-    <Compile Include="ItemInfo.cs" />
-    <Compile Include="MoveCommand.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderer.cs" />
-    <Compile Include="Spawner.cs" />
-    <Compile Include="TestCreature.cs" />
-    <Compile Include="Weapon.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Survivor.Core\Survivor.Core.csproj">
-      <Project>{0916d3e2-b980-42a4-91ef-b72af8ade676}</Project>
-      <Name>Survivor.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
