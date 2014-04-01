@@ -36,7 +36,7 @@ namespace Survivor
 
         public bool IsOccupied(int x, int y)
         {
-            return IsCreature(x, y) || IsHealthPack(x, y) || IsWeapon(x, y);
+            return IsCreature(x, y) || IsItem(x, y);
         }
 
         public bool IsCreature(int x, int y)
@@ -44,6 +44,19 @@ namespace Survivor
             foreach (var creature in Creatures)
             {
                 if (creature.X == x && creature.Y == y)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsItem(int x, int y)
+        {
+            foreach (var item in Items)
+            {
+                if (item.X == x && item.Y == y)
                 {
                     return true;
                 }
