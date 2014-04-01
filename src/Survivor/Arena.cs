@@ -34,6 +34,37 @@ namespace Survivor
                    select creature;
         }
 
+        public bool IsOccupied(int x, int y)
+        {
+            return IsCreature(x, y) || IsHealthPack(x, y);
+        }
+
+        public bool IsCreature(int x, int y)
+        {
+            foreach (var creature in Creatures)
+            {
+                if (creature.X == x && creature.Y == y)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsHealthPack(int x, int y)
+        {
+            foreach (var healthPack in HealthPacks)
+            {
+                if (healthPack.X == x && healthPack.Y == y)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public List<Creature> Creatures
         {
             get;
