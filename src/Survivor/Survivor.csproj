@@ -53,6 +53,8 @@
     <Compile Include="HealthPack.cs" />
     <Compile Include="IdleCommand.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="ItemFinder.cs" />
+    <Compile Include="ItemInfo.cs" />
     <Compile Include="MoveCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

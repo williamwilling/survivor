@@ -63,15 +63,21 @@ namespace Survivor
         private void UpdateCreatures()
         {
             var creatureFinder = new CreatureFinder(arena);
-            creatureFinder.MaxDistance = 15;
+            creatureFinder.MaxDistance = 25;
+
+            var itemFinder = new ItemFinder(arena);
+            itemFinder.MaxDistance = 15;
 
             foreach (var creature in arena.Creatures)
             {
                 if (!creature.HasCommands)
                 {
                     var nearCreatures = creatureFinder.FindNear(creature);
+                    var nearHealthPacks = itemFinder.FindNear<HealthPack>(creature);
+                    var nearWeapons = itemFinder.FindNear<Weapon>(creature);
+                    var nearArmors = itemFinder.FindNear<Armor>(creature);
 
-                    creature.Update(nearCreatures);
+                    creature.Update(nearCreatures, nearHealthPacks, nearWeapons, nearArmors);
                 }
 
                 var command = creature.NextCommand();
