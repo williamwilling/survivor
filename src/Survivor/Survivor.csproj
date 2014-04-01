@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Arena.cs" />
     <Compile Include="Armor.cs" />
+    <Compile Include="AttackCommand.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Creature.cs" />
     <Compile Include="CreatureFinder.cs" />

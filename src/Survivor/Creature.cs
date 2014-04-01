@@ -62,6 +62,12 @@ namespace Survivor
             commands.Add(command);
         }
 
+        protected void Hit(CreatureInfo enemy)
+        {
+            var command = new AttackCommand(state, enemy);
+            commands.Add(command);
+        }
+
         internal bool HasCommands
         {
             get

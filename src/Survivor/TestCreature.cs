@@ -22,6 +22,11 @@ namespace Survivor
             {
                 if (Attack > 0)
                 {
+                    if (creature.X == X && creature.Y == Y)
+                    {
+                        Hit(creature);
+                    }
+
                     MoveTo(creature.X, creature.Y);
                 }
                 else
@@ -65,6 +70,11 @@ namespace Survivor
             else if (y > Y)
             {
                 Move(Direction.Up);
+            }
+            else
+            {
+                var direction = (Direction) random.Next(4);
+                Move(direction);
             }
         }
 
