@@ -28,7 +28,10 @@ namespace Survivor
 
         public void Draw(Arena arena)
         {
+            Console.Clear();
+
             DrawHealthPacks(arena.HealthPacks);
+            DrawWeapons(arena.Weapons);
             DrawCreatures(arena.Creatures);
             DrawLog(arena.Log);
         }
@@ -44,12 +47,19 @@ namespace Survivor
 
         private void DrawHealthPacks(IEnumerable<HealthPack> healthPacks)
         {
-            Console.Clear();
-
             foreach (var healthPack in healthPacks)
             {
                 Console.SetCursorPosition(healthPack.X, healthPack.Y);
                 Console.Write('H');
+            }
+        }
+
+        private void DrawWeapons(IEnumerable<Weapon> weapons)
+        {
+            foreach (var weapon in weapons)
+            {
+                Console.SetCursorPosition(weapon.X, weapon.Y);
+                Console.Write('W');
             }
         }
 

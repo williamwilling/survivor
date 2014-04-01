@@ -41,6 +41,7 @@ namespace Survivor
         private void SpawnItems()
         {
             healthSpawner.Spawn(arena);
+            weaponSpawner.Spawn(arena);
         }
 
         private void UpdateCreatures()
@@ -59,5 +60,6 @@ namespace Survivor
 
         private Arena arena;
         private HealthSpawner healthSpawner = new HealthSpawner();
+        private WeaponSpawner weaponSpawner = new WeaponSpawner();
     }
 }

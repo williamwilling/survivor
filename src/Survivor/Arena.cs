@@ -12,6 +12,7 @@ namespace Survivor
             Height = height;
             Creatures = new List<Creature>();
             HealthPacks = new List<HealthPack>();
+            Weapons = new List<Weapon>();
             Log = new List<string>();
         }
 
@@ -36,7 +37,7 @@ namespace Survivor
 
         public bool IsOccupied(int x, int y)
         {
-            return IsCreature(x, y) || IsHealthPack(x, y);
+            return IsCreature(x, y) || IsHealthPack(x, y) || IsWeapon(x, y);
         }
 
         public bool IsCreature(int x, int y)
@@ -65,6 +66,40 @@ namespace Survivor
             return false;
         }
 
+        public bool IsWeapon(int x, int y)
+        {
+            foreach (var weapon in Weapons)
+            {
+                if (weapon.X == x && weapon.Y == y)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsCloseToCreature(int x, int y)
+        {
+            foreach (var creature in Creatures)
+            {
+                if (IsCloseTo(creature, x, y))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsCloseTo(Creature creature, int x, int y)
+        {
+            int xDistance = Math.Abs(creature.X - x);
+            int yDistance = Math.Abs(creature.Y - y);
+
+            return xDistance + yDistance < 10;
+        }
+
         public List<Creature> Creatures
         {
             get;
@@ -72,6 +107,12 @@ namespace Survivor
         }
 
         public List<HealthPack> HealthPacks
+        {
+            get;
+            private set;
+        }
+
+        public List<Weapon> Weapons
         {
             get;
             private set;
