@@ -10,7 +10,7 @@ namespace Survivor
             this.direction = direction;
         }
 
-        public override void Do()
+        public override void Do(Arena arena)
         {
             int x = Creature.X;
             int y = Creature.Y;

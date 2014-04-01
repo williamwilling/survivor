@@ -7,9 +7,9 @@ namespace Survivor
 {
     public class HealthSpawner
     {
-        public void Spawn(List<Creature> creatures, List<HealthPack> healthPacks)
+        public void Spawn(Arena arena)
         {
-            if (healthPacks.Count < 10)
+            if (arena.HealthPacks.Count < 10)
             {
                 int x, y;
 
@@ -17,10 +17,10 @@ namespace Survivor
                 {
                     x = random.Next(80);
                     y = random.Next(25);
-                } while (IsCloseTo(creatures, x, y));
+                } while (IsCloseTo(arena.Creatures, x, y));
 
                 var healthPack = new HealthPack(x, y);
-                healthPacks.Add(healthPack);
+                arena.HealthPacks.Add(healthPack);
             }
         }
 

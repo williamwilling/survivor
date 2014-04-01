@@ -8,8 +8,8 @@ namespace Survivor
     {
         public Game()
         {
-            creatures.Add(new TestCreature(10, 2));
-            creatures.Add(new TestCreature(4, 5));
+            arena.Creatures.Add(new TestCreature(10, 2));
+            arena.Creatures.Add(new TestCreature(4, 5));
         }
 
         public int FramesPerSecond
@@ -39,14 +39,14 @@ namespace Survivor
 
         private void PickUpItems()
         {
-            for (int i = 0; i < healthPacks.Count; i++)
+            for (int i = 0; i < arena.HealthPacks.Count; i++)
             {
-                var healthPack = healthPacks[i];
+                var healthPack = arena.HealthPacks[i];
                 var creature = GetCreatureAt(healthPack.X, healthPack.Y);
 
                 if (creature != null)
                 {
-                    healthPacks.RemoveAt(i);
+                    arena.HealthPacks.RemoveAt(i);
                     i--;
                 }
             }
@@ -54,7 +54,7 @@ namespace Survivor
 
         private Creature GetCreatureAt(int x, int y)
         {
-            foreach (var creature in creatures)
+            foreach (var creature in arena.Creatures)
             {
                 if (creature.X == x && creature.Y == y)
                 {
@@ -67,12 +67,12 @@ namespace Survivor
 
         private void SpawnItems()
         {
-            healthSpawner.Spawn(creatures, healthPacks);
+            healthSpawner.Spawn(arena);
         }
 
         private void UpdateCreatures()
         {
-            foreach (var creature in creatures)
+            foreach (var creature in arena.Creatures)
             {
                 if (!creature.HasCommands)
                 {
@@ -80,7 +80,7 @@ namespace Survivor
                 }
 
                 var command = creature.NextCommand();
-                command.Do();
+                command.Do(arena);
             }
         }
 
@@ -89,21 +89,20 @@ namespace Survivor
             Console.CursorVisible = false;
             Console.Clear();
 
-            foreach (var healthPack in healthPacks)
+            foreach (var healthPack in arena.HealthPacks)
             {
                 Console.SetCursorPosition(healthPack.X, healthPack.Y);
                 Console.Write('H');
             }
 
-            foreach (var creature in creatures)
+            foreach (var creature in arena.Creatures)
             {
                 Console.SetCursorPosition(creature.X, creature.Y);
                 Console.Write('@');
             }
         }
 
-        private List<Creature> creatures = new List<Creature>();
-        private List<HealthPack> healthPacks = new List<HealthPack>();
+        private Arena arena = new Arena();
         private HealthSpawner healthSpawner = new HealthSpawner();
     }
 }

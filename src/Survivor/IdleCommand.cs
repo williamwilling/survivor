@@ -9,7 +9,7 @@ namespace Survivor
         {
         }
 
-        public override void Do()
+        public override void Do(Arena arena)
         {
         }
     }

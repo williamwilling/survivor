@@ -12,7 +12,7 @@ namespace Survivor
             Creature = creature;
         }
 
-        public abstract void Do();
+        public abstract void Do(Arena arena);
 
         protected CreatureState Creature
         {
