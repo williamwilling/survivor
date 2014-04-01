@@ -1,16 +1,16 @@
 ﻿using System;
 
-namespace Survivor
+namespace Survivor.Core
 {
-    public class AttackCommand : Command
+    internal class AttackCommand : Command
     {
-        public AttackCommand(CreatureState creature, CreatureInfo enemy)
+        internal AttackCommand(Creature creature, Creature enemy)
             : base(creature)
         {
             this.enemy = enemy;
         }
 
-        public override void Do(Arena arena)
+        internal override void Do(Arena arena)
         {
             string message;
 
@@ -47,6 +47,6 @@ namespace Survivor
             arena.Log.Add(message);
         }
 
-        private CreatureInfo enemy;
+        private Creature enemy;
     }
 }

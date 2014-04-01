@@ -3,35 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Survivor
+namespace Survivor.Core
 {
-    public class ItemFinder
+    internal class ItemFinder
     {
-        public ItemFinder(Arena arena)
+        internal ItemFinder(Arena arena)
         {
             this.arena = arena;
         }
 
-        public int MaxDistance
+        internal int MaxDistance
         {
             get;
             set;
         }
 
-        public IEnumerable<ItemInfo> FindNear<T>(Creature creature)
+        internal IEnumerable<Item> FindNear(Creature creature, ItemType itemType)
         {
-            var items = new List<ItemInfo>();
+            var items = new List<Item>();
 
             foreach (var item in arena.Items)
             {
-                if (item.GetType() == typeof(T))
+                if (item.Type == itemType)
                 {
                     int distance = CalculcateDistance(creature, item);
 
                     if (distance <= MaxDistance)
                     {
-                        var info = new ItemInfo(item);
-                        items.Add(info);
+                        items.Add(item);
                     }
                 }
             }

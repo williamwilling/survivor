@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Survivor.Core;
 
 namespace Survivor
 {
     public class TestCreature : Creature
     {
-        public TestCreature(int x, int y)
-            : base("Test", x, y)
-        {
-        }
-
-        public override void Update(IEnumerable<CreatureInfo> creatures, IEnumerable<ItemInfo> healthPacks, IEnumerable<ItemInfo> weapons, IEnumerable<ItemInfo> armors)
+        public override void Update(IEnumerable<Creature> creatures, IEnumerable<Item> healthPacks, IEnumerable<Item> weapons, IEnumerable<Item> armors)
         {
             var healthPack = healthPacks.FirstOrDefault();
             var weapon = weapons.FirstOrDefault();
@@ -48,8 +44,7 @@ namespace Survivor
             }
             else
             {
-                var direction = (Direction) random.Next(4);
-                Move(direction);
+                MoveRandom();
             }
         }
 
@@ -57,24 +52,23 @@ namespace Survivor
         {
             if (x < X)
             {
-                Move(Direction.Right);
+                MoveRight();
             }
             else if (x > X)
             {
-                Move(Direction.Left);
+                MoveLeft();
             }
             else if (y < Y)
             {
-                Move(Direction.Down);
+                MoveDown();
             }
             else if (y > Y)
             {
-                Move(Direction.Up);
+                MoveUp();
             }
             else
             {
-                var direction = (Direction) random.Next(4);
-                Move(direction);
+                MoveRandom();
             }
         }
 
@@ -82,19 +76,43 @@ namespace Survivor
         {
             if (x < X)
             {
-                Move(Direction.Left);
+                MoveLeft();
             }
             else if (x > X)
             {
-                Move(Direction.Right);
+                MoveRight();
             }
             else if (y < Y)
             {
-                Move(Direction.Up);
+                MoveUp();
             }
             else if (y > Y)
             {
-                Move(Direction.Down);
+                MoveDown();
+            }
+        }
+
+        private void MoveRandom()
+        {
+            var direction = random.Next(4);
+
+            switch (direction)
+            {
+                case 0:
+                    MoveLeft();
+                    break;
+
+                case 1:
+                    MoveRight();
+                    break;
+
+                case 2:
+                    MoveUp();
+                    break;
+
+                case 3:
+                    MoveDown();
+                    break;
             }
         }
 

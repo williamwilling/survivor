@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Survivor
+namespace Survivor.Core
 {
-    public enum Direction
+    internal enum Direction
     {
         Up,
         Down,

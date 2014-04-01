@@ -3,26 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Survivor
+namespace Survivor.Core
 {
-    public abstract class Item
+    public class Item
     {
         public int X
         {
             get;
-            set;
+            internal set;
         }
 
         public int Y
         {
             get;
-            set;
+            internal set;
         }
 
         public int Strength
         {
             get;
-            set;
+            internal set;
+        }
+
+        public ItemType Type
+        {
+            get;
+            internal set;
         }
     }
 }

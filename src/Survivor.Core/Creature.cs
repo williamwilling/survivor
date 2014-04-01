@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Survivor
+namespace Survivor.Core
 {
-    public class Creature
+    public abstract class Creature
     {
-        public Creature()
-        {
-        }
-
         public string Name
         {
             get;
@@ -22,6 +18,12 @@ namespace Survivor
         }
 
         public int Y
+        {
+            get;
+            internal set;
+        }
+
+        public int Health
         {
             get;
             internal set;
@@ -43,15 +45,33 @@ namespace Survivor
         {
         }
 
-        protected void Move(Direction direction)
+        protected void MoveLeft()
         {
-            var command = new MoveCommand(state, direction);
+            var command = new MoveCommand(this, Direction.Left);
             commands.Add(command);
         }
 
-        protected void Hit(CreatureInfo enemy)
+        protected void MoveRight()
         {
-            var command = new AttackCommand(state, enemy);
+            var command = new MoveCommand(this, Direction.Right);
+            commands.Add(command);
+        }
+
+        protected void MoveUp()
+        {
+            var command = new MoveCommand(this, Direction.Up);
+            commands.Add(command);
+        }
+
+        protected void MoveDown()
+        {
+            var command = new MoveCommand(this, Direction.Down);
+            commands.Add(command);
+        }
+
+        protected void Hit(Creature enemy)
+        {
+            var command = new AttackCommand(this, enemy);
             commands.Add(command);
         }
 
@@ -67,7 +87,7 @@ namespace Survivor
         {
             if (!HasCommands)
             {
-                return new IdleCommand(state);
+                return new IdleCommand(this);
             }
 
             var command = commands[0];
@@ -76,6 +96,5 @@ namespace Survivor
         }
 
         private List<Command> commands = new List<Command>();
-        private CreatureState state = new CreatureState();
     }
 }

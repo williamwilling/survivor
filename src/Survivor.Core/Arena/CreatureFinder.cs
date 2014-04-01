@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Survivor
+namespace Survivor.Core
 {
-    public class CreatureFinder
+    internal class CreatureFinder
     {
-        public CreatureFinder(Arena arena)
+        internal CreatureFinder(Arena arena)
         {
             this.arena = arena;
         }
 
-        public int MaxDistance
+        internal int MaxDistance
         {
             get;
             set;
         }
 
-        public IEnumerable<CreatureInfo> FindNear(Creature creature)
+        internal IEnumerable<Creature> FindNear(Creature creature)
         {
-            var creatures = new List<CreatureInfo>();
+            var creatures = new List<Creature>();
 
             foreach (var candidate in arena.Creatures)
             {
@@ -30,8 +30,7 @@ namespace Survivor
 
                     if (distance <= MaxDistance)
                     {
-                        var info = new CreatureInfo(candidate);
-                        creatures.Add(info);
+                        creatures.Add(candidate);
                     }
                 }
             }

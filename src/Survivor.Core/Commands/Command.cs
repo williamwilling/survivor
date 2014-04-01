@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Survivor
+namespace Survivor.Core
 {
-    public abstract class Command
+    internal abstract class Command
     {
-        public Command(CreatureState creature)
+        internal Command(Creature creature)
         {
             Creature = creature;
         }
 
-        public abstract void Do(Arena arena);
+        internal abstract void Do(Arena arena);
 
-        protected CreatureState Creature
+        protected Creature Creature
         {
             get;
             private set;

@@ -2,27 +2,25 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Survivor
+namespace Survivor.Core
 {
     public class Game
     {
         public Game()
         {
             arena = new Arena(80, 25);
-            arena.Creatures.Add(new TestCreature(10, 2));
-            arena.Creatures.Add(new TestCreature(4, 5));
 
-            healthSpawner = new Spawner<HealthPack>();
+            healthSpawner = new Spawner(ItemType.HealthPack);
             healthSpawner.MaxItemCount = 10;
             healthSpawner.MinStrength = 5;
             healthSpawner.MaxStrength = 5;
 
-            weaponSpawner = new Spawner<Weapon>();
+            weaponSpawner = new Spawner(ItemType.Weapon);
             weaponSpawner.MaxItemCount = 4;
             weaponSpawner.MinStrength = 2;
             weaponSpawner.MaxStrength = 7;
 
-            armorSpawner = new Spawner<Armor>();
+            armorSpawner = new Spawner(ItemType.Armor);
             armorSpawner.MaxItemCount = 4;
             armorSpawner.MinStrength = 1;
             armorSpawner.MaxStrength = 4;
@@ -40,6 +38,8 @@ namespace Survivor
             creature.Name = name;
             creature.X = 0;
             creature.Y = 0;
+
+            arena.InternalCreatures.Add(creature);
         }
 
         public void Run()
@@ -63,9 +63,9 @@ namespace Survivor
 
         private void SpawnItems()
         {
-            healthSpawner.Spawn(arena, arena.HealthPacks);
-            weaponSpawner.Spawn(arena, arena.Weapons);
-            armorSpawner.Spawn(arena, arena.Armors);
+            healthSpawner.Spawn(arena);
+            weaponSpawner.Spawn(arena);
+            armorSpawner.Spawn(arena);
         }
 
         private void UpdateCreatures()
@@ -81,9 +81,9 @@ namespace Survivor
                 if (!creature.HasCommands)
                 {
                     var nearCreatures = creatureFinder.FindNear(creature);
-                    var nearHealthPacks = itemFinder.FindNear<HealthPack>(creature);
-                    var nearWeapons = itemFinder.FindNear<Weapon>(creature);
-                    var nearArmors = itemFinder.FindNear<Armor>(creature);
+                    var nearHealthPacks = itemFinder.FindNear(creature, ItemType.HealthPack);
+                    var nearWeapons = itemFinder.FindNear(creature, ItemType.Weapon);
+                    var nearArmors = itemFinder.FindNear(creature, ItemType.Armor);
 
                     creature.Update(nearCreatures, nearHealthPacks, nearWeapons, nearArmors);
                 }
@@ -94,8 +94,8 @@ namespace Survivor
         }
 
         private Arena arena;
-        private Spawner<HealthPack> healthSpawner;
-        private Spawner<Weapon> weaponSpawner;
-        private Spawner<Armor> armorSpawner;
+        private Spawner healthSpawner;
+        private Spawner weaponSpawner;
+        private Spawner armorSpawner;
     }
 }

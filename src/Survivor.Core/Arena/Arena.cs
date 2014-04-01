@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Survivor
+namespace Survivor.Core
 {
     public class Arena
     {
@@ -40,6 +40,36 @@ namespace Survivor
             get
             {
                 return InternalItems;
+            }
+        }
+
+        public IEnumerable<Item> HealthPacks
+        {
+            get
+            {
+                return from item in InternalItems
+                       where item.Type == ItemType.HealthPack
+                       select item;
+            }
+        }
+
+        public IEnumerable<Item> Weapons
+        {
+            get
+            {
+                return from item in Items
+                       where item.Type == ItemType.Weapon
+                       select item;
+            }
+        }
+
+        public IEnumerable<Item> Armors
+        {
+            get
+            {
+                return from item in Items
+                       where item.Type == ItemType.Armor
+                       select item;
             }
         }
 
@@ -138,42 +168,6 @@ namespace Survivor
             int yDistance = Math.Abs(creature.Y - y);
 
             return xDistance + yDistance < 10;
-        }
-
-        public List<Item> Items
-        {
-            get;
-            private set;
-        }
-
-        public IEnumerable<HealthPack> HealthPacks
-        {
-            get
-            {
-                return from item in Items
-                       where item.GetType() == typeof(HealthPack)
-                       select item as HealthPack;
-            }
-        }
-
-        public IEnumerable<Weapon> Weapons
-        {
-            get
-            {
-                return from item in Items
-                       where item.GetType() == typeof(Weapon)
-                       select item as Weapon;
-            }
-        }
-
-        public IEnumerable<Armor> Armors
-        {
-            get
-            {
-                return from item in Items
-                       where item.GetType() == typeof(Armor)
-                       select item as Armor;
-            }
         }
 
         public List<string> Log
