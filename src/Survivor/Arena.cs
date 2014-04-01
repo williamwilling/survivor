@@ -11,8 +11,8 @@ namespace Survivor
             Width = width;
             Height = height;
             Creatures = new List<Creature>();
-            HealthPacks = new List<HealthPack>();
-            Weapons = new List<Weapon>();
+            HealthPacks = new List<Item>();
+            Weapons = new List<Item>();
             Log = new List<string>();
         }
 
@@ -106,13 +106,13 @@ namespace Survivor
             private set;
         }
 
-        public List<HealthPack> HealthPacks
+        public List<Item> HealthPacks
         {
             get;
             private set;
         }
 
-        public List<Weapon> Weapons
+        public List<Item> Weapons
         {
             get;
             private set;

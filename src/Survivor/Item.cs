@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Survivor
 {
-    public class Weapon
+    public class Item
     {
-        public Weapon(int x, int y)
+        public Item(int x, int y)
         {
             X = x;
             Y = y;
@@ -16,13 +16,19 @@ namespace Survivor
         public int X
         {
             get;
-            private set;
+            set;
         }
 
         public int Y
         {
             get;
-            private set;
+            set;
+        }
+
+        public int Strength
+        {
+            get;
+            set;
         }
     }
 }

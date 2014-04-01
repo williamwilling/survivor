@@ -11,6 +11,16 @@ namespace Survivor
             arena = new Arena(80, 25);
             arena.Creatures.Add(new TestCreature(10, 2));
             arena.Creatures.Add(new TestCreature(4, 5));
+
+            healthSpawner = new Spawner();
+            healthSpawner.MaxItemCount = 10;
+            healthSpawner.MinStrength = 5;
+            healthSpawner.MaxStrength = 5;
+
+            weaponSpawner = new Spawner();
+            weaponSpawner.MaxItemCount = 4;
+            weaponSpawner.MinStrength = 2;
+            weaponSpawner.MaxStrength = 7;
         }
 
         public int FramesPerSecond
@@ -40,8 +50,8 @@ namespace Survivor
 
         private void SpawnItems()
         {
-            healthSpawner.Spawn(arena);
-            weaponSpawner.Spawn(arena);
+            healthSpawner.Spawn(arena, arena.HealthPacks);
+            weaponSpawner.Spawn(arena, arena.Weapons);
         }
 
         private void UpdateCreatures()
@@ -59,7 +69,7 @@ namespace Survivor
         }
 
         private Arena arena;
-        private HealthSpawner healthSpawner = new HealthSpawner();
-        private WeaponSpawner weaponSpawner = new WeaponSpawner();
+        private Spawner healthSpawner;
+        private Spawner weaponSpawner;
     }
 }
