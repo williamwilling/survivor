@@ -52,7 +52,7 @@ namespace Survivor
             }
         }
 
-        public virtual void Update()
+        public virtual void Update(IEnumerable<CreatureInfo> creatures)
         {
         }
 

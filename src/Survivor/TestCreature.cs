@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Survivor
 {
@@ -9,12 +11,37 @@ namespace Survivor
         {
         }
 
-        public override void Update()
+        public override void Update(IEnumerable<CreatureInfo> creatures)
         {
-            Direction direction = (Direction) random.Next(4);
-            Move(direction);
+            var creature = creatures.FirstOrDefault();
+
+            if (creature != null)
+            {
+                if (X < creature.X)
+                {
+                    Move(Direction.Left);
+                }
+                else
+                {
+                    Move(Direction.Right);
+                }
+
+                if (Y < creature.Y)
+                {
+                    Move(Direction.Up);
+                }
+                else
+                {
+                    Move(Direction.Down);
+                }
+            }
+            else
+            {
+                var direction = (Direction) random.Next(4);
+                Move(direction);
+            }
         }
 
-        private Random random = new Random();
+        private static Random random = new Random();
     }
 }
