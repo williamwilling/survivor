@@ -27,22 +27,60 @@ namespace Survivor
 
             while (true)
             {
-                foreach (var creature in creatures)
-                {
-                    if (!creature.HasCommands)
-                    {
-                        creature.Update();
-                    }
-
-                    var command = creature.NextCommand();
-                    command.Do();
-                }
-
-                healthSpawner.Spawn(creatures, healthPacks);
+                UpdateCreatures();
+                SpawnItems();
+                PickUpItems();
 
                 Draw();
 
                 Thread.Sleep(delay);
+            }
+        }
+
+        private void PickUpItems()
+        {
+            for (int i = 0; i < healthPacks.Count; i++)
+            {
+                var healthPack = healthPacks[i];
+                var creature = GetCreatureAt(healthPack.X, healthPack.Y);
+
+                if (creature != null)
+                {
+                    healthPacks.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+
+        private Creature GetCreatureAt(int x, int y)
+        {
+            foreach (var creature in creatures)
+            {
+                if (creature.X == x && creature.Y == y)
+                {
+                    return creature;
+                }
+            }
+
+            return null;
+        }
+
+        private void SpawnItems()
+        {
+            healthSpawner.Spawn(creatures, healthPacks);
+        }
+
+        private void UpdateCreatures()
+        {
+            foreach (var creature in creatures)
+            {
+                if (!creature.HasCommands)
+                {
+                    creature.Update();
+                }
+
+                var command = creature.NextCommand();
+                command.Do();
             }
         }
 
@@ -66,5 +104,6 @@ namespace Survivor
 
         private List<Creature> creatures = new List<Creature>();
         private List<HealthPack> healthPacks = new List<HealthPack>();
+        private HealthSpawner healthSpawner = new HealthSpawner();
     }
 }
