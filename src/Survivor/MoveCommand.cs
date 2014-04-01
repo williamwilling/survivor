@@ -47,22 +47,41 @@ namespace Survivor
 
         private void PickUpItems(Arena arena)
         {
-            var healthPack = (from h in arena.HealthPacks
-                              where h.X == Creature.X && h.Y == Creature.Y
-                              select h).FirstOrDefault();
+            var item = (from i in arena.Items
+                        where i.X == Creature.X && i.Y == Creature.Y
+                        select i).FirstOrDefault();
 
-            if (healthPack != null)
+            if (item != null)
             {
-                Creature.Health += healthPack.Strength;
-                
-                var message = String.Format(
-                    "{0} picks up a health pack and receives {1} HP.",
-                    Creature.Name,
-                    healthPack.Strength);
+                string message;
+
+                if (item.GetType() == typeof(HealthPack))
+                {
+                    message = String.Format(
+                        "{0} picks up a health pack and receives {1} HP.",
+                        Creature.Name,
+                        item.Strength);
+                    Creature.Health += item.Strength;
+                }
+                else if (item.GetType() == typeof(Weapon))
+                {
+                    message = String.Format(
+                        "{0} picks up a weapon with an attack of {1}.",
+                        Creature.Name,
+                        item.Strength);
+                    Creature.Attack = item.Strength;
+                }
+                else
+                {
+                    message = String.Format(
+                        "{0} picks up an unknown item with strength {1}. Debug time!",
+                        Creature.Name,
+                        item.Strength);
+                    throw new Exception();
+                }
+
                 arena.Log.Add(message);
-
-                arena.HealthPacks.Remove(healthPack);
-
+                arena.Items.Remove(item);
             }
         }
 

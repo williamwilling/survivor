@@ -30,5 +30,11 @@ namespace Survivor
             get;
             set;
         }
+
+        public int Attack
+        {
+            get;
+            set;
+        }
     }
 }

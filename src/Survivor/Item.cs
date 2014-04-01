@@ -5,14 +5,8 @@ using System.Text;
 
 namespace Survivor
 {
-    public class Item
+    public abstract class Item
     {
-        public Item(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
-
         public int X
         {
             get;

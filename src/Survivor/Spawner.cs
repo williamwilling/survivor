@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Survivor
 {
-    public class Spawner
+    public class Spawner<T> where T : Item, new()
     {
         public int MaxItemCount
         {
@@ -23,9 +24,9 @@ namespace Survivor
             set;
         }
 
-        public void Spawn(Arena arena, List<Item> items)
+        public void Spawn(Arena arena, IEnumerable<T> items)
         {
-            if (items.Count < MaxItemCount)
+            if (items.Count() < MaxItemCount)
             {
                 int x, y;
 
@@ -35,9 +36,11 @@ namespace Survivor
                     y = random.Next(arena.Height);
                 } while (arena.IsOccupied(x, y) || arena.IsCloseToCreature(x, y));
 
-                var item = new Item(x, y);
+                var item = new T();
+                item.X = x;
+                item.Y = y;
                 item.Strength = random.Next(MaxStrength - MinStrength) + MinStrength;
-                items.Add(item);
+                arena.Items.Add(item);
             }
         }
 

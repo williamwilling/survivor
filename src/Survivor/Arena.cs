@@ -11,8 +11,7 @@ namespace Survivor
             Width = width;
             Height = height;
             Creatures = new List<Creature>();
-            HealthPacks = new List<Item>();
-            Weapons = new List<Item>();
+            Items = new List<Item>();
             Log = new List<string>();
         }
 
@@ -106,16 +105,30 @@ namespace Survivor
             private set;
         }
 
-        public List<Item> HealthPacks
+        public List<Item> Items
         {
             get;
             private set;
         }
 
-        public List<Item> Weapons
+        public IEnumerable<HealthPack> HealthPacks
         {
-            get;
-            private set;
+            get
+            {
+                return from item in Items
+                       where item.GetType() == typeof(HealthPack)
+                       select item as HealthPack;
+            }
+        }
+
+        public IEnumerable<Weapon> Weapons
+        {
+            get
+            {
+                return from item in Items
+                       where item.GetType() == typeof(Weapon)
+                       select item as Weapon;
+            }
         }
 
         public List<string> Log

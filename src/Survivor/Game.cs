@@ -12,12 +12,12 @@ namespace Survivor
             arena.Creatures.Add(new TestCreature(10, 2));
             arena.Creatures.Add(new TestCreature(4, 5));
 
-            healthSpawner = new Spawner();
+            healthSpawner = new Spawner<HealthPack>();
             healthSpawner.MaxItemCount = 10;
             healthSpawner.MinStrength = 5;
             healthSpawner.MaxStrength = 5;
 
-            weaponSpawner = new Spawner();
+            weaponSpawner = new Spawner<Weapon>();
             weaponSpawner.MaxItemCount = 4;
             weaponSpawner.MinStrength = 2;
             weaponSpawner.MaxStrength = 7;
@@ -69,7 +69,7 @@ namespace Survivor
         }
 
         private Arena arena;
-        private Spawner healthSpawner;
-        private Spawner weaponSpawner;
+        private Spawner<HealthPack> healthSpawner;
+        private Spawner<Weapon> weaponSpawner;
     }
 }
