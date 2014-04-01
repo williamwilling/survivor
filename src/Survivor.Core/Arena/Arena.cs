@@ -73,13 +73,13 @@ namespace Survivor.Core
             }
         }
 
-        internal IList<Creature> InternalCreatures
+        internal List<Creature> InternalCreatures
         {
             get;
             private set;
         }
 
-        internal IList<Item> InternalItems
+        internal List<Item> InternalItems
         {
             get;
             private set;

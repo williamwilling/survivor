@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace Survivor.Core
@@ -38,6 +39,7 @@ namespace Survivor.Core
             creature.Name = name;
             creature.X = 0;
             creature.Y = 0;
+            creature.Health = 1;
 
             arena.InternalCreatures.Add(creature);
         }
@@ -53,12 +55,18 @@ namespace Survivor.Core
             while (true)
             {
                 UpdateCreatures();
+                RemoveDeadCreatures();
                 SpawnItems();
 
                 renderer.Draw(arena);
 
                 Thread.Sleep(delay);
             }
+        }
+
+        private void RemoveDeadCreatures()
+        {
+            arena.InternalCreatures.RemoveAll(c => c.Health <= 0);
         }
 
         private void SpawnItems()
