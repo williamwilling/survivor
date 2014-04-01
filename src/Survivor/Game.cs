@@ -102,7 +102,7 @@ namespace Survivor
             }
         }
 
-        private Arena arena = new Arena();
+        private Arena arena = new Arena(80, 25);
         private HealthSpawner healthSpawner = new HealthSpawner();
     }
 }

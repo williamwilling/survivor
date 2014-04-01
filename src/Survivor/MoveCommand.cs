@@ -35,7 +35,7 @@ namespace Survivor
                 x++;
             }
 
-            if (x >= 0 && x < 80 && y >= 0 && y < 25)
+            if (x >= 0 && x < arena.Width && y >= 0 && y < arena.Height)
             {
                 Creature.X = x;
                 Creature.Y = y;
