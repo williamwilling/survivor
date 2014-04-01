@@ -18,5 +18,11 @@ namespace Survivor
             get;
             set;
         }
+
+        public int Health
+        {
+            get;
+            set;
+        }
     }
 }

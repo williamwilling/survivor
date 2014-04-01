@@ -11,6 +11,7 @@ namespace Survivor
         {
             X = x;
             Y = y;
+            Health = 12;
         }
 
         public int X
@@ -20,6 +21,12 @@ namespace Survivor
         }
 
         public int Y
+        {
+            get;
+            private set;
+        }
+
+        public int Health
         {
             get;
             private set;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Survivor
 {
@@ -23,6 +24,13 @@ namespace Survivor
         {
             get;
             private set;
+        }
+
+        public IEnumerable<Creature> GetCreaturesAt(int x, int y)
+        {
+            return from creature in Creatures
+                   where creature.X == x && creature.Y == y
+                   select creature;
         }
 
         public List<Creature> Creatures

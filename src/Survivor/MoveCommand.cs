@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Survivor
 {
@@ -39,6 +40,21 @@ namespace Survivor
             {
                 Creature.X = x;
                 Creature.Y = y;
+
+                PickUpItems(arena);
+            }
+        }
+
+        private void PickUpItems(Arena arena)
+        {
+            var healthPack = (from h in arena.HealthPacks
+                              where h.X == Creature.X && h.Y == Creature.Y
+                              select h).FirstOrDefault();
+
+            if (healthPack != null)
+            {
+                Creature.Health += healthPack.Health;
+                arena.HealthPacks.Remove(healthPack);
             }
         }
 

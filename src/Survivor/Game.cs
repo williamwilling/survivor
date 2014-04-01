@@ -29,40 +29,11 @@ namespace Survivor
             {
                 UpdateCreatures();
                 SpawnItems();
-                PickUpItems();
 
                 Draw();
 
                 Thread.Sleep(delay);
             }
-        }
-
-        private void PickUpItems()
-        {
-            for (int i = 0; i < arena.HealthPacks.Count; i++)
-            {
-                var healthPack = arena.HealthPacks[i];
-                var creature = GetCreatureAt(healthPack.X, healthPack.Y);
-
-                if (creature != null)
-                {
-                    arena.HealthPacks.RemoveAt(i);
-                    i--;
-                }
-            }
-        }
-
-        private Creature GetCreatureAt(int x, int y)
-        {
-            foreach (var creature in arena.Creatures)
-            {
-                if (creature.X == x && creature.Y == y)
-                {
-                    return creature;
-                }
-            }
-
-            return null;
         }
 
         private void SpawnItems()
