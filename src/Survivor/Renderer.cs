@@ -32,6 +32,7 @@ namespace Survivor
 
             DrawItems(arena.HealthPacks, 'H');
             DrawItems(arena.Weapons, 'W');
+            DrawItems(arena.Armors, 'A');
             DrawCreatures(arena.Creatures);
             DrawLog(arena.Log);
         }

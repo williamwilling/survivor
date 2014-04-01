@@ -71,6 +71,14 @@ namespace Survivor
                         item.Strength);
                     Creature.Attack = item.Strength;
                 }
+                else if (item.GetType() == typeof(Armor))
+                {
+                    message = String.Format(
+                        "{0} picks up an armor with a defense of {1}.",
+                        Creature.Name,
+                        item.Strength);
+                    Creature.Defense = item.Strength;
+                }
                 else
                 {
                     message = String.Format(

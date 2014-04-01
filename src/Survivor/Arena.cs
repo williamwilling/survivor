@@ -144,6 +144,16 @@ namespace Survivor
             }
         }
 
+        public IEnumerable<Armor> Armors
+        {
+            get
+            {
+                return from item in Items
+                       where item.GetType() == typeof(Armor)
+                       select item as Armor;
+            }
+        }
+
         public List<string> Log
         {
             get;

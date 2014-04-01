@@ -36,5 +36,11 @@ namespace Survivor
             get;
             set;
         }
+
+        public int Defense
+        {
+            get;
+            set;
+        }
     }
 }

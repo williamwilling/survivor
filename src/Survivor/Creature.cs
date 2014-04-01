@@ -36,6 +36,22 @@ namespace Survivor
             }
         }
 
+        public int Attack
+        {
+            get
+            {
+                return state.Attack;
+            }
+        }
+
+        public int Defense
+        {
+            get
+            {
+                return state.Defense;
+            }
+        }
+
         public virtual void Update()
         {
         }

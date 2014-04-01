@@ -21,6 +21,11 @@ namespace Survivor
             weaponSpawner.MaxItemCount = 4;
             weaponSpawner.MinStrength = 2;
             weaponSpawner.MaxStrength = 7;
+
+            armorSpawner = new Spawner<Armor>();
+            armorSpawner.MaxItemCount = 4;
+            armorSpawner.MinStrength = 1;
+            armorSpawner.MaxStrength = 4;
         }
 
         public int FramesPerSecond
@@ -52,6 +57,7 @@ namespace Survivor
         {
             healthSpawner.Spawn(arena, arena.HealthPacks);
             weaponSpawner.Spawn(arena, arena.Weapons);
+            armorSpawner.Spawn(arena, arena.Armors);
         }
 
         private void UpdateCreatures()
@@ -71,5 +77,6 @@ namespace Survivor
         private Arena arena;
         private Spawner<HealthPack> healthSpawner;
         private Spawner<Weapon> weaponSpawner;
+        private Spawner<Armor> armorSpawner;
     }
 }
