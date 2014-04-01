@@ -28,7 +28,13 @@ namespace Survivor
             {
                 foreach (var creature in creatures)
                 {
-                    creature.Update();
+                    if (!creature.HasCommands)
+                    {
+                        creature.Update();
+                    }
+
+                    var command = creature.NextCommand();
+                    command.Do();
                 }
 
                 Draw();

@@ -1,0 +1,47 @@
+﻿using System;
+
+namespace Survivor
+{
+    public class MoveCommand : Command
+    {
+        public MoveCommand(Creature creature, Direction direction)
+            : base(creature)
+        {
+            this.direction = direction;
+        }
+
+        public override void Do()
+        {
+            int x = Creature.X;
+            int y = Creature.Y;
+
+            if (direction == Direction.Up)
+            {
+                y--;
+            }
+
+            if (direction == Direction.Down)
+            {
+                y++;
+            }
+
+            if (direction == Direction.Left)
+            {
+                x--;
+            }
+
+            if (direction == Direction.Right)
+            {
+                x++;
+            }
+
+            if (x >= 0 && x < 80 && y >= 0 && y < 25)
+            {
+                Creature.X = x;
+                Creature.Y = y;
+            }
+        }
+
+        private Direction direction;
+    }
+}

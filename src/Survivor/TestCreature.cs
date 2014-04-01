@@ -1,4 +1,4 @@
-﻿using System.Text;
+﻿using System;
 
 namespace Survivor
 {
@@ -11,10 +11,10 @@ namespace Survivor
 
         public override void Update()
         {
-            if (X < 80)
-            {
-                X = X + 1;
-            }
+            Direction direction = (Direction) random.Next(4);
+            Move(direction);
         }
+
+        private Random random = new Random();
     }
 }
