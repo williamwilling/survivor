@@ -12,6 +12,7 @@ namespace Survivor
             Height = height;
             Creatures = new List<Creature>();
             HealthPacks = new List<HealthPack>();
+            Log = new List<string>();
         }
 
         public int Width
@@ -40,6 +41,12 @@ namespace Survivor
         }
 
         public List<HealthPack> HealthPacks
+        {
+            get;
+            private set;
+        }
+
+        public List<string> Log
         {
             get;
             private set;

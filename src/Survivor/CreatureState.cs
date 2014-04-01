@@ -7,6 +7,12 @@ namespace Survivor
 {
     public class CreatureState
     {
+        public string Name
+        {
+            get;
+            set;
+        }
+
         public int X
         {
             get;

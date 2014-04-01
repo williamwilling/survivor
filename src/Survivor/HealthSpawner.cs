@@ -17,7 +17,7 @@ namespace Survivor
                 {
                     x = random.Next(80);
                     y = random.Next(25);
-                } while (!IsCloseTo(arena.Creatures, x, y));
+                } while (IsCloseTo(arena.Creatures, x, y));
 
                 var healthPack = new HealthPack(x, y);
                 arena.HealthPacks.Add(healthPack);

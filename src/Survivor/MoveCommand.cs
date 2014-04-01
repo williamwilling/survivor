@@ -54,7 +54,15 @@ namespace Survivor
             if (healthPack != null)
             {
                 Creature.Health += healthPack.Health;
+                
+                var message = String.Format(
+                    "{0} picks up a health pack and receives {1} HP.",
+                    Creature.Name,
+                    healthPack.Health);
+                arena.Log.Add(message);
+
                 arena.HealthPacks.Remove(healthPack);
+
             }
         }
 

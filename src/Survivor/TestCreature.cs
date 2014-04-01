@@ -5,7 +5,7 @@ namespace Survivor
     public class TestCreature : Creature
     {
         public TestCreature(int x, int y)
-            : base(x, y)
+            : base("Test", x, y)
         {
         }
 

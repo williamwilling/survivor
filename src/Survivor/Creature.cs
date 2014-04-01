@@ -5,10 +5,19 @@ namespace Survivor
 {
     public class Creature
     {
-        public Creature(int x, int y)
+        public Creature(string name, int x, int y)
         {
+            state.Name = name;
             state.X = x;
             state.Y = y;
+        }
+
+        public string Name
+        {
+            get
+            {
+                return state.Name;
+            }
         }
 
         public int X
