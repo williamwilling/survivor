@@ -19,16 +19,21 @@ namespace Survivor.Core
             internal set;
         }
 
-        public int Strength
+        public ItemType Type
         {
             get;
             internal set;
         }
 
-        public ItemType Type
+        internal Arena Arena
         {
             get;
-            internal set;
+            set;
+        }
+
+        internal virtual bool PickUp(Creature creature)
+        {
+            return true;
         }
     }
 }

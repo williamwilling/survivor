@@ -8,7 +8,7 @@ namespace Survivor.Core
     {
         public Renderer()
         {
-            LogSize = 3;
+            LogSize = 5;
             StatsWidth = 30;
             Console.CursorVisible = false;
         }
@@ -88,7 +88,7 @@ namespace Survivor.Core
         private void DrawLog(IEnumerable<string> log)
         {
             int first = log.Count() < LogSize ? 0 : log.Count() - LogSize;
-            var messages = log.Skip(first).Take(3);
+            var messages = log.Skip(first).Take(LogSize);
 
             int y = Console.WindowHeight - LogSize;
 

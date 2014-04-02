@@ -53,33 +53,38 @@ namespace Survivor.Core
 
             if (item != null)
             {
-                string message;
+                //string message;
 
-                switch (item.Type)
+                //switch (item.Type)
+                //{
+                //    case ItemType.HealthPack:
+                //        message = "{0} picks up a health pack and receives {1} HP.";
+                //        Creature.Health += item.Strength;
+                //        break;
+
+                //    case ItemType.Weapon:
+                //        message = "{0} picks up a weapon with an attack of {1}.";
+                //        Creature.Attack = item.Strength;
+                //        break;
+
+                //    case ItemType.Armor:
+                //        message = "{0} picks up an armor with a defense of {1}.";
+                //        Creature.Defense = item.Strength;
+                //        break;
+                //    default:
+                //        message = "{0} picks up an unknown item with strength {1}. Debug time!";
+                //        throw new Exception();
+                //}
+
+                //message = String.Format(message, Creature.Name, item.Strength);
+                //arena.Log.Add(message);
+
+                bool isPickedUp = item.PickUp(Creature);
+
+                if (isPickedUp)
                 {
-                    case ItemType.HealthPack:
-                        message = "{0} picks up a health pack and receives {1} HP.";
-                        Creature.Health += item.Strength;
-                        break;
-
-                    case ItemType.Weapon:
-                        message = "{0} picks up a weapon with an attack of {1}.";
-                        Creature.Attack = item.Strength;
-                        break;
-
-                    case ItemType.Armor:
-                        message = "{0} picks up an armor with a defense of {1}.";
-                        Creature.Defense = item.Strength;
-                        break;
-                    default:
-                        message = "{0} picks up an unknown item with strength {1}. Debug time!";
-                        throw new Exception();
+                    arena.InternalItems.Remove(item);
                 }
-
-                message = String.Format(message, Creature.Name, item.Strength);
-                arena.Log.Add(message);
-
-                arena.InternalItems.Remove(item);
             }
         }
 

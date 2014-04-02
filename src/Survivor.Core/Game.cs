@@ -9,19 +9,19 @@ namespace Survivor.Core
     {
         public Game()
         {
-            arena = new Arena(80, 25);
+            arena = new Arena(50, 25);
 
-            healthSpawner = new Spawner(ItemType.HealthPack);
+            healthSpawner = new Spawner<HealthPack>(ItemType.HealthPack);
             healthSpawner.MaxItemCount = 4;
             healthSpawner.MinStrength = 1;
             healthSpawner.MaxStrength = 1;
 
-            weaponSpawner = new Spawner(ItemType.Weapon);
+            weaponSpawner = new Spawner<Weapon>(ItemType.Weapon);
             weaponSpawner.MaxItemCount = 2;
             weaponSpawner.MinStrength = 2;
             weaponSpawner.MaxStrength = 4;
 
-            armorSpawner = new Spawner(ItemType.Armor);
+            armorSpawner = new Spawner<Armor>(ItemType.Armor);
             armorSpawner.MaxItemCount = 2;
             armorSpawner.MinStrength = 1;
             armorSpawner.MaxStrength = 2;
@@ -41,7 +41,7 @@ namespace Survivor.Core
             creature.Name = name;
             creature.X = position.X;
             creature.Y = position.Y;
-            creature.Health = 1;
+            creature.Health = 4;
 
             arena.InternalCreatures.Add(creature);
         }
@@ -81,10 +81,10 @@ namespace Survivor.Core
         private void UpdateCreatures()
         {
             var creatureFinder = new CreatureFinder(arena);
-            creatureFinder.MaxDistance = 25;
+            creatureFinder.MaxDistance = 10;
 
             var itemFinder = new ItemFinder(arena);
-            itemFinder.MaxDistance = 15;
+            itemFinder.MaxDistance = 5;
 
             foreach (var creature in arena.Creatures)
             {
@@ -115,8 +115,8 @@ namespace Survivor.Core
         }
 
         private Arena arena;
-        private Spawner healthSpawner;
-        private Spawner weaponSpawner;
-        private Spawner armorSpawner;
+        private Spawner<HealthPack> healthSpawner;
+        private Spawner<Weapon> weaponSpawner;
+        private Spawner<Armor> armorSpawner;
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Survivor.Core
 {
-    internal class Spawner
+    internal class Spawner<T> where T : Item, new()
     {
         internal Spawner(ItemType itemType)
         {
@@ -45,12 +45,12 @@ namespace Survivor.Core
                     y = random.Next(arena.Height);
                 } while (arena.IsOccupied(x, y) || arena.IsCloseToCreature(x, y));
 
-                var item = new Item()
+                var item = new T()
                 {
                     Type = itemType,
                     X = x,
                     Y = y,
-                    Strength = random.Next(MaxStrength - MinStrength) + MinStrength
+                    Arena = arena
                 };
 
                 arena.InternalItems.Add(item);

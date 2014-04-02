@@ -26,6 +26,8 @@ namespace Survivor.Core
                 if (Creature.X == enemy.X && Creature.Y == enemy.Y)
                 {
                     int damage = Math.Max(0, Creature.Attack - enemy.Defense);
+                    enemy.Health -= damage;
+                    enemy.Defense = 0;
 
                     message = String.Format(
                         "{0} attacks {1} and does {2} damage. {1} has {3} HP left.",
@@ -33,9 +35,6 @@ namespace Survivor.Core
                         enemy.Name,
                         damage,
                         enemy.Health);
-
-                    enemy.Health -= damage;
-                    enemy.Defense = 0;
                 }
                 else
                 {
