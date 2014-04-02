@@ -9,6 +9,7 @@ namespace Survivor.Core
         public Renderer()
         {
             LogSize = 3;
+            StatsWidth = 30;
             Console.CursorVisible = false;
         }
 
@@ -18,11 +19,17 @@ namespace Survivor.Core
             set;
         }
 
+        public int StatsWidth
+        {
+            get;
+            set;
+        }
+
         public void UpdateConsoleSize(Arena arena)
         {
-            Console.WindowWidth = arena.Width;
+            Console.WindowWidth = arena.Width + StatsWidth;
             Console.WindowHeight = arena.Height + LogSize;
-            Console.BufferWidth = arena.Width;
+            Console.BufferWidth = arena.Width + StatsWidth;
             Console.BufferHeight = arena.Height + LogSize;
         }
 
@@ -35,6 +42,29 @@ namespace Survivor.Core
             DrawItems(arena.Armors, 'A');
             DrawCreatures(arena.Creatures);
             DrawLog(arena.Log);
+            DrawStats(arena.Creatures, arena);
+        }
+
+        private void DrawStats(IEnumerable<Creature> creatures, Arena arena)
+        {
+            int x = arena.Width + 2;
+            int y = 0;
+            
+
+            foreach (var creature in creatures)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.WriteLine(creature.Name);
+
+                y++;
+                Console.SetCursorPosition(x, y);
+                Console.WriteLine(String.Format(
+                    "HP: {0} - Att: {1} - Def: {2}",
+                    creature.Health,
+                    creature.Attack,
+                    creature.Defense));
+                y += 2;
+            }
         }
 
         private void DrawCreatures(IEnumerable<Creature> creatures)
