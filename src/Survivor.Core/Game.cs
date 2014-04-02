@@ -10,21 +10,26 @@ namespace Survivor.Core
         public Game()
         {
             arena = new Arena(50, 25);
+            CreateSpawnPoints();
+        }
 
-            healthSpawner = new Spawner<HealthPack>(ItemType.HealthPack);
-            healthSpawner.MaxItemCount = 4;
-            healthSpawner.MinStrength = 1;
-            healthSpawner.MaxStrength = 1;
+        private void CreateSpawnPoints()
+        {
+            int x = arena.Width / 2 + random.Next(arena.Width / 2);
+            int y = arena.Height / 2 + random.Next(arena.Height / 2);
+            arena.SpawnPoints.Add(new SpawnPoint(arena, x, y));
 
-            weaponSpawner = new Spawner<Weapon>(ItemType.Weapon);
-            weaponSpawner.MaxItemCount = 2;
-            weaponSpawner.MinStrength = 2;
-            weaponSpawner.MaxStrength = 4;
+            x = random.Next(arena.Width / 2);
+            y = arena.Height / 2 + random.Next(arena.Height / 2);
+            arena.SpawnPoints.Add(new SpawnPoint(arena, x, y));
 
-            armorSpawner = new Spawner<Armor>(ItemType.Armor);
-            armorSpawner.MaxItemCount = 2;
-            armorSpawner.MinStrength = 1;
-            armorSpawner.MaxStrength = 2;
+            x = arena.Width / 2 + random.Next(arena.Width / 2);
+            y = random.Next(arena.Height / 2);
+            arena.SpawnPoints.Add(new SpawnPoint(arena, x, y));
+
+            x = random.Next(arena.Width / 2);
+            y = random.Next(arena.Height / 2);
+            arena.SpawnPoints.Add(new SpawnPoint(arena, x, y));
         }
 
         public int FramesPerSecond
@@ -84,9 +89,10 @@ namespace Survivor.Core
 
         private void SpawnItems()
         {
-            healthSpawner.Spawn(arena);
-            weaponSpawner.Spawn(arena);
-            armorSpawner.Spawn(arena);
+            foreach (var spawnPoint in arena.SpawnPoints)
+            {
+                spawnPoint.Spawn();
+            }
         }
 
         private void UpdateCreatures()
@@ -132,8 +138,6 @@ namespace Survivor.Core
         }
 
         private Arena arena;
-        private Spawner<HealthPack> healthSpawner;
-        private Spawner<Weapon> weaponSpawner;
-        private Spawner<Armor> armorSpawner;
+        private Random random = new Random();
     }
 }

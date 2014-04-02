@@ -12,6 +12,7 @@ namespace Survivor.Core
             Height = height;
             InternalCreatures = new List<Creature>();
             InternalItems = new List<Item>();
+            SpawnPoints = new List<SpawnPoint>();
             Log = new List<string>();
         }
 
@@ -98,6 +99,12 @@ namespace Survivor.Core
         }
 
         internal List<Item> InternalItems
+        {
+            get;
+            private set;
+        }
+
+        internal List<SpawnPoint> SpawnPoints
         {
             get;
             private set;
