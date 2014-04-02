@@ -95,6 +95,12 @@ namespace Survivor.Core
 
             foreach (var creature in arena.Creatures)
             {
+                if (creature.SkipTurnCount > 0)
+                {
+                    creature.SkipTurnCount--;
+                    continue;
+                }
+
                 if (!creature.HasCommands)
                 {
                     var nearCreatures = creatureFinder.FindNear(creature);

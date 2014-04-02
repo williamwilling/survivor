@@ -11,6 +11,7 @@ namespace Survivor.Core
                 creature.Name));
 
             creature.Attack = attack;
+            creature.SkipTurnCount = 1;
             return true;
         }
 

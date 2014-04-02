@@ -14,6 +14,7 @@ namespace Survivor.Core
                     healthPoints));
 
                 creature.Health += healthPoints;
+                creature.SkipTurnCount += 3;
                 return true;
             }
 

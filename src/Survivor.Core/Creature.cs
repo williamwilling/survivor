@@ -75,6 +75,12 @@ namespace Survivor.Core
             commands.Add(command);
         }
 
+        internal int SkipTurnCount
+        {
+            get;
+            set;
+        }
+
         internal bool HasCommands
         {
             get
