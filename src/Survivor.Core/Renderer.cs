@@ -49,10 +49,13 @@ namespace Survivor.Core
         {
             int x = arena.Width + 2;
             int y = 0;
-            
+            int color = 0;
 
             foreach (var creature in creatures)
             {
+                Console.ForegroundColor = colors[color];
+                color = (color + 1) % colors.Length;
+
                 Console.SetCursorPosition(x, y);
                 Console.WriteLine(creature.Name);
 
@@ -65,15 +68,24 @@ namespace Survivor.Core
                     creature.Defense));
                 y += 2;
             }
+
+            Console.ResetColor();
         }
 
         private void DrawCreatures(IEnumerable<Creature> creatures)
         {
+            int color = 0;
+
             foreach (var creature in creatures)
             {
+                Console.ForegroundColor = colors[color];
+                color = (color + 1) % colors.Length;
+
                 Console.SetCursorPosition(creature.X, creature.Y);
                 Console.Write('@');
             }
+
+            Console.ResetColor();
         }
 
         private void DrawItems(IEnumerable<Item> items, char symbol)
@@ -99,5 +111,11 @@ namespace Survivor.Core
                 y++;
             }
         }
+
+        private ConsoleColor[] colors = new ConsoleColor[] {
+            ConsoleColor.Blue, ConsoleColor.Red, ConsoleColor.Green,
+            ConsoleColor.Magenta, ConsoleColor.White, ConsoleColor.Cyan,
+            ConsoleColor.DarkBlue, ConsoleColor.DarkRed, ConsoleColor.DarkGreen,
+            ConsoleColor.DarkMagenta, ConsoleColor.Gray, ConsoleColor.DarkCyan };
     }
 }
