@@ -37,11 +37,15 @@ namespace Survivor.Core
         {
             var position = arena.FindEmptySpot();
 
-            var creature = new T();
-            creature.Name = name;
-            creature.X = position.X;
-            creature.Y = position.Y;
-            creature.Health = 4;
+            var creature = new T()
+            {
+                Name = name,
+                X = position.X,
+                Y = position.Y,
+                Health = 4,
+                ArenaWidth = arena.Width,
+                ArenaHeight = arena.Height
+            };
 
             arena.InternalCreatures.Add(creature);
         }

@@ -18,11 +18,13 @@ namespace Survivor.Core
             set;
         }
 
-        internal IEnumerable<Item> FindNear(Creature creature)
+        internal IReadOnlyList<Item> FindNear(Creature creature)
         {
-            return from item in arena.Items
-                   where CalculateDistance(creature, item) <= MaxDistance
-                   select item;
+            var items = from item in arena.InternalItems
+                        where CalculateDistance(creature, item) <= MaxDistance
+                        select item;
+
+            return items.ToList();
         }
 
         private int CalculateDistance(Creature creature, Item item)

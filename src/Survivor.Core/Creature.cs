@@ -41,9 +41,19 @@ namespace Survivor.Core
             internal set;
         }
 
-        public virtual void Update(IEnumerable<Creature> creatures, IEnumerable<Item> items)
+        public int ArenaWidth
         {
+            get;
+            internal set;
         }
+
+        public int ArenaHeight
+        {
+            get;
+            internal set;
+        }
+
+        public abstract void Update(IReadOnlyList<Creature> creatures, IReadOnlyList<Item> items);
 
         protected void MoveLeft()
         {
