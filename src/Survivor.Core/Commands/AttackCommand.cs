@@ -30,7 +30,7 @@ namespace Survivor.Core
                     enemy.Defense = 0;
 
                     message = String.Format(
-                        "{0} attacks {1} and does {2} damage. {1} has {3} HP left.",
+                        "{0} attacks {1} and does {2} damage.",
                         Creature.Name,
                         enemy.Name,
                         damage,

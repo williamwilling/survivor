@@ -68,6 +68,13 @@ namespace Survivor.Core
 
         private void RemoveDeadCreatures()
         {
+            var deadCreatures = arena.InternalCreatures.Where(c => c.Health <= 0);
+
+            foreach (var creature in deadCreatures)
+            {
+                arena.Log.Add(String.Format("{0} dies.", creature.Name));
+            }
+
             arena.InternalCreatures.RemoveAll(c => c.Health <= 0);
         }
 
