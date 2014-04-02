@@ -91,13 +91,11 @@ namespace Survivor.Core
                 if (!creature.HasCommands)
                 {
                     var nearCreatures = creatureFinder.FindNear(creature);
-                    var nearHealthPacks = itemFinder.FindNear(creature, ItemType.HealthPack);
-                    var nearWeapons = itemFinder.FindNear(creature, ItemType.Weapon);
-                    var nearArmors = itemFinder.FindNear(creature, ItemType.Armor);
+                    var nearItems = itemFinder.FindNear(creature);
 
                     try
                     {
-                        creature.Update(nearCreatures, nearHealthPacks, nearWeapons, nearArmors);
+                        creature.Update(nearCreatures, nearItems);
                     }
                     catch (Exception e)
                     {

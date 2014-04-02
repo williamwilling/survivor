@@ -41,7 +41,7 @@ namespace Survivor.Core
             internal set;
         }
 
-        public virtual void Update(IEnumerable<Creature> creatures, IEnumerable<Item> healthPacks, IEnumerable<Item> weapons, IEnumerable<Item> armors)
+        public virtual void Update(IEnumerable<Creature> creatures, IEnumerable<Item> items)
         {
         }
 

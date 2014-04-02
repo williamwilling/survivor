@@ -7,11 +7,11 @@ namespace Survivor
 {
     public class TestCreature : Creature
     {
-        public override void Update(IEnumerable<Creature> creatures, IEnumerable<Item> healthPacks, IEnumerable<Item> weapons, IEnumerable<Item> armors)
+        public override void Update(IEnumerable<Creature> creatures, IEnumerable<Item> items)
         {
-            var healthPack = healthPacks.FirstOrDefault();
-            var weapon = weapons.FirstOrDefault();
-            var armor = armors.FirstOrDefault();
+            var healthPack = items.Where(i => i.Type == ItemType.HealthPack).FirstOrDefault();
+            var weapon = items.Where(i => i.Type == ItemType.Weapon).FirstOrDefault();
+            var armor = items.Where(i => i.Type == ItemType.Armor).FirstOrDefault();
             var creature = creatures.FirstOrDefault();
 
             if (creature != null)
