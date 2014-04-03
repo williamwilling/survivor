@@ -4,6 +4,11 @@ namespace Survivor.Core
 {
     public class Armor : Item
     {
+        public Armor()
+        {
+            Type = ItemType.Armor;
+        }
+
         internal override bool PickUp(Creature creature)
         {
             Arena.Log.Add(String.Format(

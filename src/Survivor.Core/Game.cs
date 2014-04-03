@@ -17,19 +17,27 @@ namespace Survivor.Core
         {
             int x = arena.Width / 2 + random.Next(arena.Width / 2);
             int y = arena.Height / 2 + random.Next(arena.Height / 2);
-            arena.SpawnPoints.Add(new SpawnPoint(arena, x, y));
+            SpawnPoint spawnPoint = new SpawnPoint<HealthPack>(arena, x, y);
+            spawnPoint.SpawnChance = 0.01;
+            arena.SpawnPoints.Add(spawnPoint);
 
             x = random.Next(arena.Width / 2);
             y = arena.Height / 2 + random.Next(arena.Height / 2);
-            arena.SpawnPoints.Add(new SpawnPoint(arena, x, y));
+            spawnPoint = new SpawnPoint<Weapon>(arena, x, y);
+            spawnPoint.SpawnChance = 0.02;
+            arena.SpawnPoints.Add(spawnPoint);
 
             x = arena.Width / 2 + random.Next(arena.Width / 2);
             y = random.Next(arena.Height / 2);
-            arena.SpawnPoints.Add(new SpawnPoint(arena, x, y));
+            spawnPoint = new SpawnPoint<Armor>(arena, x, y);
+            spawnPoint.SpawnChance = 0.05;
+            arena.SpawnPoints.Add(spawnPoint);
 
             x = random.Next(arena.Width / 2);
             y = random.Next(arena.Height / 2);
-            arena.SpawnPoints.Add(new SpawnPoint(arena, x, y));
+            spawnPoint = new SpawnPoint<Weapon>(arena, x, y);
+            spawnPoint.SpawnChance = 0.03;
+            arena.SpawnPoints.Add(spawnPoint);
         }
 
         public int FramesPerSecond

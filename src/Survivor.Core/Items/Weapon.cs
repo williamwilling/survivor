@@ -4,6 +4,11 @@ namespace Survivor.Core
 {
     public class Weapon : Item
     {
+        public Weapon()
+        {
+            Type = ItemType.Weapon;
+        }
+
         internal override bool PickUp(Creature creature)
         {
             Arena.Log.Add(String.Format(

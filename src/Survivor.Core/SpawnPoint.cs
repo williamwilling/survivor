@@ -5,59 +5,48 @@ using System.Text;
 
 namespace Survivor.Core
 {
-    internal class SpawnPoint
+    internal abstract class SpawnPoint
+    {
+        internal abstract void Spawn();
+
+        protected internal int X
+        {
+            get;
+            protected set;
+        }
+
+        protected internal int Y
+        {
+            get;
+            protected set;
+        }
+
+        internal double SpawnChance
+        {
+            get;
+            set;
+        }
+    }
+
+    internal class SpawnPoint<T> : SpawnPoint where T : Item, new()
     {
         internal SpawnPoint(Arena arena, int x, int y)
         {
             X = x;
             Y = y;
+            SpawnChance = 1.0;
             this.arena = arena;
         }
 
-        internal int X
-        {
-            get;
-            private set;
-        }
-
-        internal int Y
-        {
-            get;
-            private set;
-        }
-
-        internal void Spawn()
+        internal override void Spawn()
         {
             if (!arena.IsOccupied(X, Y))
             {
-                int spawnChance = random.Next(100);
+                double chance = random.NextDouble();
 
-                if (spawnChance < 5)
+                if (chance < SpawnChance)
                 {
-                    int itemType = random.Next(3);
-                    Item item = null;
-
-                    switch (itemType)
-                    {
-                        case 0:
-                            item = new HealthPack();
-                            item.Type = ItemType.HealthPack;
-                            break;
-
-                        case 1:
-                            item = new Armor();
-                            item.Type = ItemType.Armor;
-                            break;
-
-                        case 2:
-                            item = new Weapon();
-                            item.Type = ItemType.Weapon;
-                            break;
-
-                        default:
-                            throw new InvalidOperationException();
-                    }
-
+                    var item = new T();
                     item.X = X;
                     item.Y = Y;
                     item.Arena = arena;

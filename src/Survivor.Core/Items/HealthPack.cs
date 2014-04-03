@@ -4,6 +4,11 @@ namespace Survivor.Core
 {
     public class HealthPack : Item
     {
+        public HealthPack()
+        {
+            Type = ItemType.HealthPack;
+        }
+
         internal override bool PickUp(Creature creature)
         {
             if (creature.Health < 10)
