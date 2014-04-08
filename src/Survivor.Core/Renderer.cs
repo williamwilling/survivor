@@ -35,12 +35,13 @@ namespace Survivor.Core
 
         public void Draw(Arena arena)
         {
-            Console.Clear();
+            Console.Clear();                                                                            
 
             DrawItems(arena.HealthPacks, 'H');
             DrawItems(arena.Weapons, 'W');
             DrawItems(arena.Armors, 'A');
             DrawItems(arena.XPBoosts, 'X');
+            DrawItems(arena.Nukes, 'N');
             DrawCreatures(arena.Creatures);
             DrawLog(arena.Log);
             DrawStats(arena.Creatures, arena);

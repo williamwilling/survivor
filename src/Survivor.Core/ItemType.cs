@@ -10,6 +10,7 @@ namespace Survivor.Core
         HealthPack,
         Weapon,
         Armor,
-        XPBoost
+        XPBoost,
+        Nuke
     }
 }
