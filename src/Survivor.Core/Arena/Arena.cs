@@ -74,6 +74,26 @@ namespace Survivor.Core
             }
         }
 
+        public IEnumerable<Item> XPBoosts
+        {
+            get
+            {
+                return from item in Items
+                       where item.Type == ItemType.XPBoost
+                       select item;
+            }
+        }
+
+        public IEnumerable<Item> Nukes
+        {
+            get
+            {
+                return from item in Items
+                       where item.Type == ItemType.Nuke
+                       select item;
+            }
+        }
+
         public bool IsInBounds(int x, int y)
         {
             return x >= 0 && x < Width && y >= 0 && y < Height;
@@ -166,6 +186,32 @@ namespace Survivor.Core
             foreach (var weapon in Weapons)
             {
                 if (weapon.X == x && weapon.Y == y)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsXPBoost(int x, int y)
+        {
+            foreach(var XPBoost in XPBoosts)
+            {
+                if(XPBoost.X == x && XPBoost.Y == y)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsNuke(int x, int y)
+        {
+            foreach(var Nuke in Nukes)
+            {
+                if(Nuke.X == x && Nuke.Y == y)
                 {
                     return true;
                 }
