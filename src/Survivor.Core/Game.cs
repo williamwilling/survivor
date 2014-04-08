@@ -42,7 +42,7 @@ namespace Survivor.Core
             x = arena.Width / 2 + random.Next(arena.Width / 2);
             y = random.Next(arena.Height / 2);
             spawnPoint = new SpawnPoint<Nuke>(arena, x, y);
-            spawnPoint.SpawnChance = 0.01;
+            spawnPoint.SpawnChance = 0.005;
             arena.SpawnPoints.Add(spawnPoint);
 
             x = random.Next(arena.Width / 2);

@@ -19,7 +19,7 @@ namespace Survivor.Core
 
             foreach (var foundCreature in Creatures)
             {
-                    Arena.Log.Add(String.Format("{0} died by a Nuke!", foundCreature.Name));
+                    //Arena.Log.Add(String.Format("{0} died by a Nuke!", foundCreature.Name));
                     foundCreature.Health = 0;
             }
             return true;
