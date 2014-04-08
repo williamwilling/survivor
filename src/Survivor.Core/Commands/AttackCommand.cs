@@ -35,6 +35,12 @@ namespace Survivor.Core
                         enemy.Name,
                         damage,
                         enemy.Health);
+
+                    Creature.XP += 100;
+                    message = String.Format(
+                        "{0} got 100 XP for doing damage to {1}",
+                        Creature.Name,
+                        enemy.Name);
                 }
                 else
                 {

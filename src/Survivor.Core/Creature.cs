@@ -41,6 +41,12 @@ namespace Survivor.Core
             internal set;
         }
 
+        public int XP
+        {
+            get;
+            internal set;
+        }
+
         public int ArenaWidth
         {
             get;

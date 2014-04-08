@@ -9,6 +9,7 @@ namespace Survivor.Core
     {
         HealthPack,
         Weapon,
-        Armor
+        Armor,
+        XPBoost
     }
 }

@@ -40,6 +40,7 @@ namespace Survivor.Core
             DrawItems(arena.HealthPacks, 'H');
             DrawItems(arena.Weapons, 'W');
             DrawItems(arena.Armors, 'A');
+            DrawItems(arena.XPBoosts, 'X');
             DrawCreatures(arena.Creatures);
             DrawLog(arena.Log);
             DrawStats(arena.Creatures, arena);
@@ -57,7 +58,10 @@ namespace Survivor.Core
                 color = (color + 1) % colors.Length;
 
                 Console.SetCursorPosition(x, y);
-                Console.WriteLine(creature.Name);
+                Console.WriteLine(string.Format(
+                    "{0} (XP: {1})",
+                    creature.Name,
+                    creature.XP));
 
                 y++;
                 Console.SetCursorPosition(x, y);

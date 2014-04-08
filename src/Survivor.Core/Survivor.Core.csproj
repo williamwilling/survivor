@@ -53,6 +53,7 @@
     <Compile Include="Item.cs" />
     <Compile Include="Arena\ItemFinder.cs" />
     <Compile Include="Items\HealthPack.cs" />
+    <Compile Include="Items\XPBoost.cs" />
     <Compile Include="ItemType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderer.cs" />

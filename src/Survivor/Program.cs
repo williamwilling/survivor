@@ -12,6 +12,7 @@ namespace Survivor
 
             game.Add<DemoCreature>("Maximus");
             game.Add<DemoCreature>("Antonius");
+            game.Add<MyFirstCreature>("Henk");
 
             game.Run();
         }
